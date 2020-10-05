@@ -5,7 +5,7 @@ const Modal = ({ addTodo, setFormData, formData, setModalState }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     addTodo();
-    setModalState(false);
+    console.log(formData);
   };
   // Function for handling more than one inputfield
   const updateValue = (event) => {
@@ -59,11 +59,11 @@ const Modal = ({ addTodo, setFormData, formData, setModalState }) => {
             value={formData.author}
           />
           <button
-            type="button"
+            type="submit"
             id="todoCreateBtn"
             onClick={() => setModalState(false)}
           >
-            Create
+            Submit
           </button>
         </form>
       </div>

@@ -54,7 +54,8 @@ const TodosContainer = () => {
         {todos.length < 1 ? (
           <p>Jippi! Ingen todos i dag</p>
         ) : (
-          <Title title="Mine todos">
+          <>
+            <Title title="Mine todos" />
             {todos && (
               <TodoList
                 completeTodo={completeTodo}
@@ -62,7 +63,7 @@ const TodosContainer = () => {
                 todos={todos}
               />
             )}
-          </Title>
+          </>
         )}
         <p>{completed.length < 1 ? 'Ingen completed' : <CompletedList />}</p>
       </section>

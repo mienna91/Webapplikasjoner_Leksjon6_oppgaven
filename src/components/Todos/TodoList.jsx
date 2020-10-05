@@ -6,7 +6,7 @@ import TodoItem from './TodoItem';
 const Todos = ({ todos, removeTodo, completeTodo }) => (
   <ul className="todoList">
     {todos.map((item) => (
-      <TodoItem key={item.id} />
+      <TodoItem key={item.id} todos={todos} />
     ))}
   </ul>
 );

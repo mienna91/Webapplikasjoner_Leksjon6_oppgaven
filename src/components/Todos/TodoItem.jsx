@@ -3,16 +3,16 @@ import React from 'react';
 // TODO: Add completedTodo prop handler to update state on parent
 // TODO: Add removeTodo prop handler to update state on parent
 
-const TodoItem = (...formData) => {
+const TodoItem = ({ todos }) => {
   const handleComplete = () => {};
 
   const handleDelete = () => {};
 
   return (
     <>
-      <li className="todoTitle">{formData.title}</li>
-      <li className="todoDescription">{formData.description}</li>
-      <li className="todoAuthor">{formData.author}</li>
+      <li className="todoTitle">{todos.title}</li>
+      <li className="todoDescription">{todos.description}</li>
+      <li className="todoAuthor">{todos.author}</li>
       <li className="todoBtns">
         <button type="button" className="completeBtn" onClick={handleComplete}>
           Complete
