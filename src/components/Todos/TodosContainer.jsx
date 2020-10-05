@@ -34,7 +34,6 @@ const TodosContainer = () => {
     // TODO: Update completedlist with todoItem (update state)
   };
 
-  // TODO: Finish clickhandler on Button to be able to toggle Modal
   // TODO: Conditional render todos (<p>Ingen todos</p>) when empty and <Title /> with <TodoList /> if not empty
   // TODO: Add necessary props to Title to render "Mine todos"
   // TODO: Add necessary props to TodoList to be able to handle removeTodo, completeTodo and render todos (props drilling)

@@ -1,8 +1,9 @@
 import React from 'react';
+import Title from './Title';
 
 const Navbar = () => (
   <header id="header1">
-    <h3>HIOF</h3>
+    <Title title="HIOF" />
     <p>Kristoffer Mienna</p>
   </header>
 );

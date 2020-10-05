@@ -9,21 +9,19 @@ const TodoItem = (...formData) => {
   const handleDelete = () => {};
 
   return (
-    <li className="todoTitle">{formData.title}</li>
-    <li className="todoDescription">{formData.description}</li>
-    <li className="todoAuthor">{formData.author}</li>
-    <li className="todoBtns">
-    <button
-        type="button"
-        className="completeBtn"
-        onClick="handleComplete"
-    >
-        Complete
-    </button>
-    <button type="button" className="deleteBtn" onClick="handleDelete">
-        Delete
-    </button>
-    </li>
+    <>
+      <li className="todoTitle">{formData.title}</li>
+      <li className="todoDescription">{formData.description}</li>
+      <li className="todoAuthor">{formData.author}</li>
+      <li className="todoBtns">
+        <button type="button" className="completeBtn" onClick={handleComplete}>
+          Complete
+        </button>
+        <button type="button" className="deleteBtn" onClick={handleDelete}>
+          Delete
+        </button>
+      </li>
+    </>
   );
 };
 
