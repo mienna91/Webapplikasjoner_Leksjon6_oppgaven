@@ -18,7 +18,6 @@ const TodosContainer = () => {
   const addTodo = () => {
     setTodos((previous) => [{ id: todos.length, ...formData }, ...previous]);
     setModalState(false);
-    console.log(todos);
   };
 
   const removeTodo = (id) => {
@@ -55,7 +54,15 @@ const TodosContainer = () => {
         {todos.length < 1 ? (
           <p>Jippi! Ingen todos i dag</p>
         ) : (
-          <Title title="Mine todos">{todos && <TodoList />}</Title>
+          <Title title="Mine todos">
+            {todos && (
+              <TodoList
+                completeTodo={completeTodo}
+                removeTodo={removeTodo}
+                todos={todos}
+              />
+            )}
+          </Title>
         )}
         <p>{completed.length < 1 ? 'Ingen completed' : <CompletedList />}</p>
       </section>
