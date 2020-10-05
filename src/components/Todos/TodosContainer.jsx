@@ -6,17 +6,30 @@ import CompletedList from './CompletedList';
 import TodoList from './TodoList';
 
 const TodosContainer = () => {
+  const myList = [
+    {
+      id: 1,
+      title: 'Gjøre Webapplikasjoner',
+      description: 'Lære meg hva useEffect egentlig er.',
+      author: 'Blendi',
+    },
+    { id: 2, title: 'Lage middag', description: 'Taco?!', author: 'Blendi' },
+    { id: 3, title: 'Trene', description: 'Chest', author: 'Blendi' },
+  ];
+
   const [modalState, setModalState] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     author: '',
   });
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(myList);
   const [completed, setCompleted] = useState([]);
 
   const addTodo = () => {
-    setTodos((previous) => [{ id: todos.length, ...formData }, ...previous]);
+    console.log(formData);
+    setTodos((prev) => [{ id: todos.length, ...formData }, ...prev]);
+
     setModalState(false);
   };
 
@@ -35,39 +48,32 @@ const TodosContainer = () => {
   // TODO: Add necessary props to CompletedList to be able to render completed
 
   return (
-    <article className="card">
-      <section className="todoContainer">
-        <p>
-          {modalState && (
-            <Modal
-              setFormData={setFormData}
-              formData={formData}
-              addTodo={addTodo}
-              setModalState={setModalState}
+    <div className="todosWrapper">
+      {modalState && (
+        <Modal
+          setFormData={setFormData}
+          formData={formData}
+          addTodo={addTodo}
+          setModalState={setModalState}
+        />
+      )}
+      <Button name="New todo" clickHandler={() => setModalState(!modalState)} />
+      {todos.length < 1 ? (
+        <p>Jippi! Ingen todos i dag</p>
+      ) : (
+        <>
+          <Title title="Mine todos" />
+          {todos && (
+            <TodoList
+              completeTodo={completeTodo}
+              removeTodo={removeTodo}
+              todos={todos}
             />
           )}
-        </p>
-        <Button
-          name="New todo"
-          clickHandler={() => setModalState(!modalState)}
-        />
-        {todos.length < 1 ? (
-          <p>Jippi! Ingen todos i dag</p>
-        ) : (
-          <>
-            <Title title="Mine todos" />
-            {todos && (
-              <TodoList
-                completeTodo={completeTodo}
-                removeTodo={removeTodo}
-                todos={todos}
-              />
-            )}
-          </>
-        )}
-        <p>{completed.length < 1 ? 'Ingen completed' : <CompletedList />}</p>
-      </section>
-    </article>
+        </>
+      )}
+      <p>{completed.length < 1 ? 'Ingen completed' : <CompletedList />}</p>
+    </div>
   );
 };
 

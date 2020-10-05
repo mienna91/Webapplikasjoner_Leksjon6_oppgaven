@@ -10,17 +10,21 @@ const TodoItem = ({ todos }) => {
 
   return (
     <>
-      <li className="todoTitle">{todos.title}</li>
-      <li className="todoDescription">{todos.description}</li>
-      <li className="todoAuthor">{todos.author}</li>
-      <li className="todoBtns">
-        <button type="button" className="completeBtn" onClick={handleComplete}>
-          Complete
-        </button>
-        <button type="button" className="deleteBtn" onClick={handleDelete}>
-          Delete
-        </button>
-      </li>
+      <article className="card" key={todos.id}>
+        <header>
+          <h2>{todos.title}</h2>
+          <p>{todos.author}</p>
+          <p>{todos.description}</p>
+        </header>
+        <section>
+          <button id="complete" type="button" onClick={handleComplete}>
+            Complete
+          </button>
+          <button id="remove" type="button" onClick={handleDelete}>
+            Remove
+          </button>
+        </section>
+      </article>
     </>
   );
 };

@@ -2,10 +2,10 @@ import React from 'react';
 import Title from './Title';
 
 const Navbar = () => (
-  <header id="header1">
+  <nav>
     <Title title="HIOF" />
     <p>Kristoffer Mienna</p>
-  </header>
+  </nav>
 );
 
 export default Navbar;

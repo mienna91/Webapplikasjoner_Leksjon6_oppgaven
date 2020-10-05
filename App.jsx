@@ -10,8 +10,8 @@ import CompletedTable from './src/components/Todos/CompletedTable';
 // TODO: Add TodosContainer
 const App = () => (
   <>
+    <Navbar />
     <Layout>
-      <Navbar />
       <TodosContainer />
       <CompletedTable />
     </Layout>

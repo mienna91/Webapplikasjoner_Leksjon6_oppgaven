@@ -5,7 +5,6 @@ const Modal = ({ addTodo, setFormData, formData, setModalState }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     addTodo();
-    console.log(formData);
   };
   // Function for handling more than one inputfield
   const updateValue = (event) => {
@@ -17,20 +16,20 @@ const Modal = ({ addTodo, setFormData, formData, setModalState }) => {
   };
 
   return (
-    <div id="modalWindow">
-      <header id="newTodoHeader">
-        <h5>New Todo</h5>
-        <span id="closeBtn" onClick={() => setModalState(false)}>
-          &#10006;
-        </span>
-      </header>
-      <div id="modalContent">
-        <form id="newTodo" onSubmit={handleSubmit}>
+    <section id="modal">
+      <section className="modal_inner_wrapper">
+        <header id="newTodoHeader">
+          <h3>New todo</h3>
+          <button type="button" onClick={() => setModalState(false)}>
+            X
+          </button>
+        </header>
+        <form id="todo_form" onSubmit={handleSubmit}>
           <label htmlFor="title">Title</label>
           <input
             type="text"
             name="title"
-            id="todoTitle"
+            id="title"
             autoComplete="off"
             maxLength="20"
             onChange={updateValue}
@@ -42,7 +41,7 @@ const Modal = ({ addTodo, setFormData, formData, setModalState }) => {
           <input
             type="text"
             name="description"
-            id="todoDescription"
+            id="description"
             maxLength="30"
             autoComplete="off"
             onChange={updateValue}
@@ -52,22 +51,16 @@ const Modal = ({ addTodo, setFormData, formData, setModalState }) => {
           <input
             type="text"
             name="author"
-            id="todoAuthor"
+            id="author"
             autoComplete="off"
             maxLength="20"
             onChange={updateValue}
             value={formData.author}
           />
-          <button
-            type="submit"
-            id="todoCreateBtn"
-            onClick={() => setModalState(false)}
-          >
-            Submit
-          </button>
+          <button type="submit">Submit</button>
         </form>
-      </div>
-    </div>
+      </section>
+    </section>
   );
 };
 
