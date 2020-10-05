@@ -1,11 +1,10 @@
 import React from 'react';
 
 // Modal delegates formhandling to its parent
-// TODO: Add necessary props to be able to handle addTodo, setFormdata, formData, setModal
 const Modal = ({ addTodo, setFormData, formData, setModalState }) => {
   const handleSubmit = (event) => {
-    addTodo();
     event.preventDefault();
+    addTodo();
     setModalState(false);
   };
   // Function for handling more than one inputfield
@@ -34,8 +33,8 @@ const Modal = ({ addTodo, setFormData, formData, setModalState }) => {
             id="todoTitle"
             autoComplete="off"
             maxLength="20"
-            // onChange={updateValue()}
-            // value={formData.title}
+            onChange={updateValue}
+            value={formData.title}
           />
           <label htmlFor="description" id="descriptionLabel">
             Description <p id="count"> (30 Characters left)</p>
@@ -46,8 +45,8 @@ const Modal = ({ addTodo, setFormData, formData, setModalState }) => {
             id="todoDescription"
             maxLength="30"
             autoComplete="off"
-            // onChange={updateValue()}
-            // value={formData.description}
+            onChange={updateValue}
+            value={formData.description}
           />
           <label htmlFor="author">Author</label>
           <input
@@ -56,8 +55,8 @@ const Modal = ({ addTodo, setFormData, formData, setModalState }) => {
             id="todoAuthor"
             autoComplete="off"
             maxLength="20"
-            // onChange={updateValue()}
-            // value={formData.author}
+            onChange={updateValue}
+            value={formData.author}
           />
           <button
             type="button"

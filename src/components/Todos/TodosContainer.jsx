@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import Button from './TodoButton';
 import Modal from '../Modal';
-import TodoList from './TodoList';
 import Title from '../Title';
 import CompletedList from './CompletedList';
-import Todos from './TodoList';
-
-// TODO: Create CompletedList and CompletedItem components (they look like TodoList and TodoItem)
+import TodoList from './TodoList';
 
 const TodosContainer = () => {
   const [modalState, setModalState] = useState(false);
@@ -21,6 +18,7 @@ const TodosContainer = () => {
   const addTodo = () => {
     setTodos((previous) => [{ id: todos.length, ...formData }, ...previous]);
     setModalState(false);
+    console.log(todos);
   };
 
   const removeTodo = (id) => {
@@ -34,8 +32,6 @@ const TodosContainer = () => {
     // TODO: Update completedlist with todoItem (update state)
   };
 
-  // TODO: Conditional render todos (<p>Ingen todos</p>) when empty and <Title /> with <TodoList /> if not empty
-  // TODO: Add necessary props to Title to render "Mine todos"
   // TODO: Add necessary props to TodoList to be able to handle removeTodo, completeTodo and render todos (props drilling)
   // TODO: Add necessary props to CompletedList to be able to render completed
 
@@ -56,7 +52,11 @@ const TodosContainer = () => {
           name="New todo"
           clickHandler={() => setModalState(!modalState)}
         />
-        {todos.length < 1 ? <p>Jippi! Ingen todos i dag</p> : <Title />}
+        {todos.length < 1 ? (
+          <p>Jippi! Ingen todos i dag</p>
+        ) : (
+          <Title title="Mine todos">{todos && <TodoList />}</Title>
+        )}
         <p>{completed.length < 1 ? 'Ingen completed' : <CompletedList />}</p>
       </section>
     </article>
