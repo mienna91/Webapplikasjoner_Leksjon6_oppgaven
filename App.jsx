@@ -13,7 +13,6 @@ const App = () => (
     <Navbar />
     <Layout>
       <TodosContainer />
-      <CompletedTable />
     </Layout>
   </>
 );

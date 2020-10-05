@@ -5,12 +5,11 @@ import TodoItem from './TodoItem';
 
 const Todos = ({ todos, removeTodo, completeTodo }) => (
   <ul id="todos">
-    {console.log(todos)}
     {todos &&
       todos.map((item) => (
         <TodoItem
           key={item.id}
-          todos={todos}
+          todos={item}
           removeTodo={removeTodo}
           completeTodo={completeTodo}
         />

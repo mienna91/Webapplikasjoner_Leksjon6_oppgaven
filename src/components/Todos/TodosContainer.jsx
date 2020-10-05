@@ -4,47 +4,59 @@ import Modal from '../Modal';
 import Title from '../Title';
 import CompletedList from './CompletedList';
 import TodoList from './TodoList';
+import CompletedTable from './CompletedTable';
 
 const TodosContainer = () => {
-  const myList = [
+  const dummyTodos = [
+    {
+      id: 0,
+      title: 'Lære om react props/hooks/states',
+      description:
+        'Forsøke å wrappe hode rundt parent-childe og sibling-sibling forhold',
+      author: 'Kristoffer',
+    },
     {
       id: 1,
-      title: 'Gjøre Webapplikasjoner',
-      description: 'Lære meg hva useEffect egentlig er.',
-      author: 'Blendi',
+      title: 'Lage kvelds',
+      description: 'Mean cheese sandwich',
+      author: 'Kristoffer',
     },
-    { id: 2, title: 'Lage middag', description: 'Taco?!', author: 'Blendi' },
-    { id: 3, title: 'Trene', description: 'Chest', author: 'Blendi' },
+    {
+      id: 2,
+      title: 'Binde fluer',
+      description: 'rekeimitasjoner og lopper står på agendaen',
+      author: 'Kristoffer',
+    },
   ];
-
   const [modalState, setModalState] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     author: '',
   });
-  const [todos, setTodos] = useState(myList);
+  const [todos, setTodos] = useState(dummyTodos);
   const [completed, setCompleted] = useState([]);
 
   const addTodo = () => {
-    console.log(formData);
-    setTodos((prev) => [{ id: todos.length, ...formData }, ...prev]);
+    setTodos((prev) => [{ id: todos.length + 10, ...formData }, ...prev]);
 
     setModalState(false);
   };
 
   const removeTodo = (id) => {
-    const completedTodo = todos.filter((todo) => todo.id !== id);
-    setTodos(completedTodo);
+    const newTodo = todos.filter((todo) => todo.id !== id);
+    setTodos(newTodo);
   };
 
   const completeTodo = (id) => {
-    // TODO: Find todoItem
-    // TODO: RemoveTodoItem from todos (update state)
-    // TODO: Update completedlist with todoItem (update state)
+    const completedTodo = todos.filter((todo) => todo.id === id);
+    console.log(completedTodo);
+    removeTodo(id);
+    setTodos(todos.filter((todo) => todo.id !== id));
+    setCompleted((prev) => [{ ...completedTodo }, ...prev]);
+    // setCompleted(completeTodo.concat(completed));
   };
 
-  // TODO: Add necessary props to TodoList to be able to handle removeTodo, completeTodo and render todos (props drilling)
   // TODO: Add necessary props to CompletedList to be able to render completed
 
   return (
@@ -72,7 +84,11 @@ const TodosContainer = () => {
           )}
         </>
       )}
-      <p>{completed.length < 1 ? 'Ingen completed' : <CompletedList />}</p>
+      {completed.length < 1 ? (
+        <p>Ingen completed</p>
+      ) : (
+        <CompletedList completed={completed} />
+      )}
     </div>
   );
 };
