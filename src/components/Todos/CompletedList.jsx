@@ -3,11 +3,18 @@ import Title from '../Title';
 import CompletedItem from './CompletedItem';
 
 const CompletedList = ({ completed }) => {
+  /* Hooks */
   const [search, setSearch] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
 
+  /* Event handler for the onchange event, search field. Sets the
+  state of the search */
   const handleChange = (event) => setSearch(event.target.value);
 
+  /* useEffect hook that triggers when the dependency of the method is
+  changed, in this case: search, filters the completed list on title and 
+  includes the search (characters typed in the input) and sets the state
+  of the searchResult */
   useEffect(() => {
     const result = completed.filter((complete) =>
       complete.title.toLowerCase().includes(search)
