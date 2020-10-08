@@ -4,7 +4,6 @@ import Modal from '../Modal';
 import Title from '../Title';
 import CompletedList from './CompletedList';
 import TodoList from './TodoList';
-import CompletedTable from './CompletedTable';
 
 const TodosContainer = () => {
   const dummyTodos = [
@@ -38,7 +37,7 @@ const TodosContainer = () => {
   const [completed, setCompleted] = useState([]);
 
   const addTodo = () => {
-    setTodos((prev) => [{ id: todos.length + 10, ...formData }, ...prev]);
+    setTodos((prev) => [{ id: todos.length, ...formData }, ...prev]);
 
     setModalState(false);
   };
@@ -53,8 +52,8 @@ const TodosContainer = () => {
     console.log(completedTodo);
     removeTodo(id);
     setTodos(todos.filter((todo) => todo.id !== id));
-    setCompleted((prev) => [{ ...completedTodo }, ...prev]);
-    // setCompleted(completeTodo.concat(completed));
+    // setCompleted((prev) => [{ ...completedTodo }, ...prev]);
+    setCompleted(completed.concat(completedTodo));
   };
 
   // TODO: Add necessary props to CompletedList to be able to render completed
@@ -71,7 +70,7 @@ const TodosContainer = () => {
       )}
       <Button name="New todo" clickHandler={() => setModalState(!modalState)} />
       {todos.length < 1 ? (
-        <p>Jippi! Ingen todos i dag</p>
+        <Title title="Jippi! Ingen todos i dag" />
       ) : (
         <>
           <Title title="Mine todos" />
@@ -85,7 +84,7 @@ const TodosContainer = () => {
         </>
       )}
       {completed.length < 1 ? (
-        <p>Ingen completed</p>
+        <Title title="Ingen completed todos" />
       ) : (
         <CompletedList completed={completed} />
       )}

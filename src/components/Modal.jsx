@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // Modal delegates formhandling to its parent
 const Modal = ({ addTodo, setFormData, formData, setModalState }) => {
+  const [maxCharacter, setMaxCharacter] = useState(50);
+
+  const charCount = (event) => setMaxCharacter(50 - event.target.value.length);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     addTodo();
@@ -36,14 +40,18 @@ const Modal = ({ addTodo, setFormData, formData, setModalState }) => {
             value={formData.title}
           />
           <label htmlFor="description" id="descriptionLabel">
-            Description <p id="count"> (30 Characters left)</p>
+            Description:
+            {maxCharacter < 1
+              ? ' Maximum 50 characters'
+              : ` ${maxCharacter} Characters left`}
           </label>
           <input
             type="text"
             name="description"
             id="description"
-            maxLength="30"
+            maxLength="50"
             autoComplete="off"
+            onKeyDown={charCount}
             onChange={updateValue}
             value={formData.description}
           />
