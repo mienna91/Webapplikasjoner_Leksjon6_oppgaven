@@ -1,5 +1,6 @@
 import React from 'react';
 
+/* NOT IN USE */
 const CompletedTable = () => (
   <section id="completeSection">
     <h4 id="completeTitle">Completed todos</h4>

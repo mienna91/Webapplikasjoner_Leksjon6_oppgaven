@@ -1,6 +1,7 @@
 import React from 'react';
 
 const CompletedItem = ({ completed }) => {
+  /* Borrowed function for formatting the date */
   const dateFormatter = () => {
     const date = new Date();
     const format = new Intl.DateTimeFormat('en', {

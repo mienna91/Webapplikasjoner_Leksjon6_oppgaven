@@ -1,8 +1,5 @@
 import React from 'react';
 
-// TODO: Add completedTodo prop handler to update state on parent
-// TODO: Add removeTodo prop handler to update state on parent
-
 const TodoItem = ({ todos, removeTodo, completeTodo }) => (
   <>
     <article className="card" key={todos.id}>

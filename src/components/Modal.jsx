@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
 
-// Modal delegates formhandling to its parent
 const Modal = ({ addTodo, setFormData, formData, setModalState }) => {
+  /* HOOK */
   const [maxCharacter, setMaxCharacter] = useState(50);
 
+  /* Eventhandler for the onKeyDown event, keeps track of how many
+  characters left out of 50 and sets the state for maxCharacter */
   const charCount = (event) => setMaxCharacter(50 - event.target.value.length);
 
+  /* Eventhandler for the onSumbit event, prevents the regular submit and
+  adds a todo to the todos list */
   const handleSubmit = (event) => {
     event.preventDefault();
     addTodo();
+    setFormData({
+      title: '',
+      description: '',
+      author: '',
+    });
   };
-  // Function for handling more than one inputfield
+
+  /* Function for handling more than one inputfield */
   const updateValue = (event) => {
     const inputValue = { [event.target.name]: event.target.value };
     setFormData((prev) => ({

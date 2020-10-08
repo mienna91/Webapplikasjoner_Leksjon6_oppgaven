@@ -6,6 +6,7 @@ import CompletedList from './CompletedList';
 import TodoList from './TodoList';
 
 const TodosContainer = () => {
+  /* HOOKS */
   const dummyTodos = [
     {
       id: 0,
@@ -36,27 +37,32 @@ const TodosContainer = () => {
   const [todos, setTodos] = useState(dummyTodos);
   const [completed, setCompleted] = useState([]);
 
+  /* Function that adds a new todo, to the list of todos. Pushes the new
+  todo at the front of the array with an ID, while keeping the previous
+  todos */
   const addTodo = () => {
     setTodos((prev) => [{ id: todos.length, ...formData }, ...prev]);
 
     setModalState(false);
   };
 
+  /* Function that removes a todo, filters out the todos that don't
+  correspond with the id passed to the function and sets the todos
+  list */
   const removeTodo = (id) => {
     const newTodo = todos.filter((todo) => todo.id !== id);
     setTodos(newTodo);
   };
 
+  /* Function for completeing a todo, filters out the todo to be
+  completed bases on the id passed to the function, removes the todo
+  and sets the new state for the todolist and the completed list */
   const completeTodo = (id) => {
     const completedTodo = todos.filter((todo) => todo.id === id);
-    console.log(completedTodo);
     removeTodo(id);
     setTodos(todos.filter((todo) => todo.id !== id));
-    // setCompleted((prev) => [{ ...completedTodo }, ...prev]);
     setCompleted(completed.concat(completedTodo));
   };
-
-  // TODO: Add necessary props to CompletedList to be able to render completed
 
   return (
     <div className="todosWrapper">
